@@ -60,13 +60,21 @@ export default function EventsPage() {
               </div>
               <div>
                 <p className="font-semibold">Next date</p>
-                <p>See upcoming dates</p>
+                <p>Jan 15 · Los Angeles</p>
+              </div>
+              <div>
+                <p className="font-semibold">Tickets</p>
+                <p>From $45 · 20 spots · 5 left</p>
+              </div>
+              <div>
+                <p className="font-semibold">Refund policy</p>
+                <p>Full refund up to 72 hours</p>
               </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 mt-8">
-              <Button className="bg-sunshine-blue text-sunshine-brown hover:bg-sunshine-yellow">RSVP</Button>
+              <Button className="bg-sunshine-blue text-sunshine-brown hover:bg-sunshine-yellow">Reserve Jan 15 spot</Button>
               <Button variant="outline" className="border-sunshine-white text-sunshine-white hover:bg-sunshine-white hover:text-sunshine-purple">
-                Join the waitlist
+                See all dates
               </Button>
             </div>
           </BrandCard>
@@ -78,7 +86,7 @@ export default function EventsPage() {
               height={600}
               className="w-full h-full object-cover"
             />
-          </Card>
+          </BrandCard>
         </div>
       </section>
 
@@ -97,11 +105,19 @@ export default function EventsPage() {
               </div>
               <div>
                 <p className="font-semibold">Next date</p>
-                <p>Join the waitlist</p>
+                <p>Feb 2 · Austin · Candle-lit</p>
+              </div>
+              <div>
+                <p className="font-semibold">Tickets</p>
+                <p>$55 · 18 spots · 9 left</p>
+              </div>
+              <div>
+                <p className="font-semibold">Refund policy</p>
+                <p>Full refund up to 72 hours</p>
               </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 mt-8">
-              <Button className="bg-sunshine-purple text-sunshine-white hover:bg-sunshine-orange">RSVP</Button>
+              <Button className="bg-sunshine-purple text-sunshine-white hover:bg-sunshine-orange">Reserve Feb 2 spot</Button>
               <Button variant="outline" className="border-sunshine-purple text-sunshine-purple hover:bg-sunshine-purple hover:text-sunshine-white">
                 Join the waitlist
               </Button>
@@ -115,7 +131,7 @@ export default function EventsPage() {
               height={600}
               className="w-full h-full object-cover"
             />
-          </Card>
+          </BrandCard>
         </div>
       </section>
 

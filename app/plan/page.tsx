@@ -14,7 +14,7 @@ export default function PlanPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b border-border sticky top-0 bg-background/80 backdrop-blur-sm z-50">
+      <header className="border-b border-border sticky top-0 bg-background z-50">
         <div className="max-w-5xl mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
             <h1 className="font-display text-2xl font-semibold tracking-tight">Project Plan</h1>

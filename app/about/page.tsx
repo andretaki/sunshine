@@ -28,7 +28,7 @@ const values = [
 export default function AboutPage() {
   return (
     <div className="bg-sunshine-white">
-      <section className="relative overflow-hidden bg-sunshine-orange text-sunshine-white px-6 py-20">
+      <section className="relative overflow-hidden bg-sunshine-orange text-sunshine-white px-6 py-20 md:py-24">
         <div className="max-w-6xl mx-auto grid md:grid-cols-[1.05fr_0.95fr] gap-10 items-center">
           <div className="space-y-4">
             <p className="font-subhead uppercase tracking-[0.16em] text-sm text-sunshine-blue">
@@ -72,7 +72,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="px-6 py-16">
+      <section className="px-6 py-20 md:py-24">
         <div className="max-w-5xl mx-auto space-y-6 text-lg leading-relaxed text-sunshine-brown font-body">
           <p className="font-subhead uppercase tracking-[0.14em] text-sm text-sunshine-orange">
             How I hold space
@@ -89,11 +89,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="px-6 py-16 bg-sunshine-yellow text-sunshine-brown">
+      <section className="px-6 py-20 md:py-24 bg-sunshine-yellow text-sunshine-brown">
         <div className="max-w-6xl mx-auto space-y-10">
           <div className="space-y-3">
             <p className="font-subhead uppercase tracking-[0.14em] text-sm text-sunshine-purple">Chapters</p>
-            <h2 className="font-headline text-4xl md:text-5xl uppercase text-sunshine-purple leading-tight">
+            <h2 className="font-headline text-[clamp(2rem,5vw,3rem)] md:text-5xl uppercase text-sunshine-purple leading-tight">
               From burnout to alignment.
             </h2>
             <p className="font-body text-lg leading-relaxed max-w-3xl">
@@ -114,11 +114,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="px-6 py-16 bg-sunshine-white">
+      <section className="px-6 py-20 md:py-24 bg-sunshine-white">
         <div className="max-w-6xl mx-auto space-y-10">
           <div className="text-center space-y-3">
             <p className="font-subhead uppercase tracking-[0.14em] text-sm text-sunshine-orange">Values</p>
-            <h2 className="font-headline text-4xl md:text-5xl uppercase text-sunshine-purple">Rooted & resourced</h2>
+            <h2 className="font-headline text-[clamp(2rem,5vw,3rem)] md:text-5xl uppercase text-sunshine-purple">Rooted & resourced</h2>
             <p className="font-body text-lg text-sunshine-brown leading-relaxed max-w-3xl mx-auto">
               The values that shape every coaching session, retreat, and community room.
             </p>
@@ -134,7 +134,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="px-6 py-16 md:py-20 bg-sunshine-purple text-sunshine-white">
+      <section className="px-6 py-20 md:py-24 bg-sunshine-purple text-sunshine-white">
         <div className="max-w-5xl mx-auto text-center space-y-6">
           <h3 className="font-headline text-4xl md:text-5xl uppercase">Let&apos;s walk together.</h3>
           <p className="font-body text-lg leading-relaxed max-w-3xl mx-auto">

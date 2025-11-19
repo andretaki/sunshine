@@ -1,5 +1,8 @@
+'use client';
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { BrandCard } from '@/components/brand-card';
 
 const pathway = [
@@ -26,6 +29,7 @@ const offerings = [
     tone: 'Alignment + accountability',
     variant: 'purple' as const,
     accent: 'bg-sunshine-yellow text-sunshine-brown',
+    price: 'Starting at $450 / session or $1,200 for 3 months',
     copy: 'Personal coaching for women ready to rebuild confidence, clarify goals, and finally act from a resourced place.',
     bullets: [
       'Single clarity session or 3-month journey',
@@ -39,6 +43,7 @@ const offerings = [
     tone: 'Immersive + restorative',
     variant: 'orange' as const,
     accent: 'bg-sunshine-blue text-sunshine-brown',
+    price: 'From $650, payment plans available',
     copy: 'Weekend and long-form retreats to release old identities, remember who you are, and connect with women walking the same path.',
     bullets: [
       'Somatic movement + breathwork',
@@ -52,6 +57,7 @@ const offerings = [
     tone: 'Community in motion',
     variant: 'yellow' as const,
     accent: 'bg-sunshine-purple text-sunshine-white',
+    price: 'Tickets from $45, early-bird pricing',
     copy: 'Golden Hour (electric, heart-led networking) and Lunar Room (slow, introspective, sound + stillness).',
     bullets: [
       'Clear next dates and RSVP links',
@@ -87,10 +93,11 @@ export default function HomePage() {
         id="home"
         className="relative overflow-hidden bg-sunshine-purple text-sunshine-white"
       >
-        <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-24 -left-16 w-96 h-96 bg-sunshine-yellow rounded-full" />
           <div className="absolute -bottom-32 -right-20 w-[500px] h-[500px] bg-sunshine-blue rounded-full" />
-          <div className="absolute top-0 right-0 w-64 h-full bg-sunshine-orange/20 skew-x-12" />
+          <div className="absolute top-0 right-0 w-64 h-full bg-sunshine-orange skew-x-12" />
+          <div className="absolute top-20 right-10 w-32 h-32 rounded-full bg-sunshine-white" aria-hidden />
         </div>
         <div className="max-w-7xl mx-auto px-6 py-24 md:py-28 relative">
           <div className="max-w-3xl">
@@ -104,29 +111,49 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row gap-4 mt-10">
               <Link href="/contact">
                 <Button size="lg" className="bg-sunshine-blue text-sunshine-brown hover:bg-sunshine-yellow">
-                  Glow from the heart
+                  Book a free 20-min call
                 </Button>
               </Link>
               <Link href="/events" className="flex items-center">
                 <Button size="lg" variant="outline" className="border-2 border-sunshine-white text-sunshine-white hover:bg-sunshine-white hover:text-sunshine-purple">
-                  Explore events
+                  Reserve Golden Hour spot
                 </Button>
               </Link>
             </div>
             <p className="mt-6 text-sm md:text-base max-w-xl leading-relaxed">
               Spiritual depth blended with practical structure. Real power does not have to push or prove.
             </p>
+            <BrandCard variant="white" className="mt-8 max-w-xl text-left">
+              <h3 className="font-headline text-xl uppercase text-sunshine-purple mb-2">Free Guide: 7-Day Burnout Reset</h3>
+              <p className="font-body text-sm text-sunshine-brown mb-4">Get the exact rituals Sunshine uses to move clients from anxious to aligned.</p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Input id="guide-email" type="email" placeholder="you@example.com" aria-label="Email for 7-day burnout reset guide" />
+                <Button
+                  className="bg-sunshine-purple text-sunshine-white hover:bg-sunshine-orange"
+                  onClick={async () => {
+                    const email = (document.getElementById('guide-email') as HTMLInputElement | null)?.value;
+                    await fetch('/api/subscribe', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ type: 'guide', email }),
+                    });
+                  }}
+                >
+                  Send me the guide
+                </Button>
+              </div>
+            </BrandCard>
           </div>
         </div>
       </section>
 
-      <section id="alignment" className="py-16 px-6 bg-sunshine-white">
+      <section id="alignment" className="py-20 md:py-24 px-6 bg-sunshine-white">
         <div className="max-w-5xl mx-auto grid md:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
           <div className="space-y-5">
             <p className="font-subhead uppercase tracking-[0.16em] text-sunshine-orange text-sm">
               From burnout to alignment
             </p>
-            <h2 className="font-headline text-4xl md:text-5xl leading-tight text-sunshine-purple uppercase">
+            <h2 className="font-headline text-[clamp(2rem,5vw,3rem)] md:text-5xl leading-tight text-sunshine-purple uppercase">
               Pockets of peace. Momentum that sticks.
             </h2>
             <p className="font-body text-lg leading-relaxed">
@@ -153,11 +180,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="pathway" className="py-16 px-6 bg-sunshine-yellow text-sunshine-brown">
+      <section id="pathway" className="py-20 md:py-24 px-6 bg-sunshine-yellow text-sunshine-brown">
         <div className="max-w-6xl mx-auto space-y-10">
           <div className="flex flex-col gap-3">
             <p className="font-subhead uppercase tracking-[0.16em] text-sm">A simple pathway</p>
-            <h2 className="font-headline text-4xl md:text-5xl leading-tight uppercase text-sunshine-purple">
+            <h2 className="font-headline text-[clamp(2rem,5vw,3rem)] md:text-5xl leading-tight uppercase text-sunshine-purple">
               Clarity, groundedness, forward motion.
             </h2>
             <p className="font-body text-lg max-w-3xl">
@@ -178,13 +205,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="offerings" className="py-18 md:py-20 px-6 bg-sunshine-white">
+      <section id="offerings" className="py-20 md:py-24 px-6 bg-sunshine-white">
         <div className="max-w-6xl mx-auto space-y-10">
           <div className="flex flex-col gap-3 text-center max-w-3xl mx-auto">
             <p className="font-subhead uppercase tracking-[0.16em] text-sm text-sunshine-orange">
               Offerings
             </p>
-            <h2 className="font-headline text-4xl md:text-5xl uppercase text-sunshine-purple">
+            <h2 className="font-headline text-[clamp(2rem,5vw,3rem)] md:text-5xl uppercase text-sunshine-purple">
               Choose the way you want to glow.
             </h2>
             <p className="font-body text-lg leading-relaxed text-sunshine-brown">
@@ -203,6 +230,7 @@ export default function HomePage() {
                     {offering.tone}
                   </p>
                   <h3 className="font-headline text-3xl uppercase leading-tight">{offering.title}</h3>
+                  <p className="font-body text-sm">{offering.price}</p>
                 </div>
                 <p className="font-body text-base leading-relaxed">{offering.copy}</p>
                 <ul className="space-y-3">
@@ -226,13 +254,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-16 px-6 bg-sunshine-purple text-sunshine-white" id="events">
+      <section className="py-20 md:py-24 px-6 bg-sunshine-purple text-sunshine-white" id="events">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-10">
           <div className="md:w-1/2 space-y-4">
             <p className="font-subhead uppercase tracking-[0.16em] text-xs text-sunshine-blue">
               Community in motion
             </p>
-            <h2 className="font-headline text-4xl md:text-5xl uppercase leading-tight">
+            <h2 className="font-headline text-[clamp(2rem,5vw,3rem)] md:text-5xl uppercase leading-tight">
               Golden Hour & Lunar Room
             </h2>
             <p className="text-lg leading-relaxed">
@@ -254,7 +282,7 @@ export default function HomePage() {
               Real power does not have to push or prove. Step into a room that holds you.
             </p>
           </div>
-          <div className="md:w-1/2 grid grid-cols-2 gap-4">
+          <div className="md:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <BrandCard className="p-6" variant="orange">
               <p className="font-subhead uppercase tracking-[0.12em] text-xs">Golden Hour</p>
               <h3 className="font-headline text-2xl uppercase mt-2">High energy, heart-led networking</h3>
@@ -276,11 +304,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="community" className="py-16 px-6 bg-sunshine-white">
+      <section id="community" className="py-20 md:py-24 px-6 bg-sunshine-white">
         <div className="max-w-6xl mx-auto space-y-10">
           <div className="space-y-3 text-center max-w-3xl mx-auto">
             <p className="font-subhead uppercase tracking-[0.16em] text-sm text-sunshine-orange">Testimonials</p>
-            <h2 className="font-headline text-4xl md:text-5xl uppercase text-sunshine-purple">Feeling seen changes everything.</h2>
+            <h2 className="font-headline text-[clamp(2rem,5vw,3rem)] md:text-5xl uppercase text-sunshine-purple">Feeling seen changes everything.</h2>
             <p className="font-body text-lg text-sunshine-brown leading-relaxed">
               Stories from women who chose alignment over burnout.
             </p>
@@ -298,38 +326,56 @@ export default function HomePage() {
               </BrandCard>
             ))}
           </div>
+          <div className="grid grid-cols-3 gap-2 mt-8 max-w-sm mx-auto" aria-hidden>
+            <div className="w-20 h-20 rounded-full bg-sunshine-yellow" />
+            <div className="w-20 h-20 rounded-full bg-sunshine-orange" />
+            <div className="w-20 h-20 rounded-full bg-sunshine-purple" />
+          </div>
         </div>
       </section>
 
-      <section className="py-16 px-6 bg-sunshine-orange text-sunshine-white">
+      <section className="py-20 md:py-24 px-6 bg-sunshine-orange text-sunshine-white">
         <div className="max-w-6xl mx-auto grid md:grid-cols-[1.2fr_0.8fr] gap-8 items-center">
           <div className="space-y-4">
             <p className="font-subhead uppercase tracking-[0.16em] text-sm text-sunshine-blue">
               Glow Notes
             </p>
-            <h2 className="font-headline text-4xl md:text-5xl uppercase leading-tight">Join the list</h2>
+            <h2 className="font-headline text-[clamp(2rem,5vw,3rem)] md:text-5xl uppercase leading-tight">Join the list</h2>
             <p className="font-body text-lg leading-relaxed">
               Consistent Bulletin emails + gentle SMS check-ins (1–2x weekly). Ritual reminders, aligned event invites, and loving accountability so momentum never feels lonely.
             </p>
             <div className="grid sm:grid-cols-2 gap-3">
               <div className="space-y-2">
-                <label className="text-sm font-semibold">Email</label>
-                <input
+                <label htmlFor="email-signup" className="text-sm font-semibold">Email</label>
+                <Input
+                  id="email-signup"
+                  type="email"
                   aria-label="Email for Consistent Bulletin"
                   placeholder="you@example.com"
-                  className="w-full rounded-full px-4 py-3 bg-sunshine-white text-sunshine-brown border-0"
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-semibold">SMS (optional)</label>
-                <input
+                <label htmlFor="sms-signup" className="text-sm font-semibold">SMS (optional)</label>
+                <Input
+                  id="sms-signup"
+                  type="tel"
                   aria-label="SMS for gentle check-ins"
                   placeholder="(555) 123-4567"
-                  className="w-full rounded-full px-4 py-3 bg-sunshine-white text-sunshine-brown border-0"
                 />
               </div>
             </div>
-            <Button className="bg-sunshine-yellow text-sunshine-brown hover:bg-sunshine-blue w-full sm:w-auto">
+            <Button
+              className="bg-sunshine-yellow text-sunshine-brown hover:bg-sunshine-blue w-full sm:w-auto"
+              onClick={async () => {
+                const email = (document.getElementById('email-signup') as HTMLInputElement | null)?.value;
+                const phone = (document.getElementById('sms-signup') as HTMLInputElement | null)?.value;
+                await fetch('/api/subscribe', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ type: 'glow-notes', email, phone }),
+                });
+              }}
+            >
               Join the Consistent Bulletin
             </Button>
             <p className="font-body text-sm">

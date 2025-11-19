@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -20,12 +22,12 @@ export function Footer() {
             Weekly love notes, event invites, and gentle reminders that discipline is self love in motion.
           </p>
           <div className="flex items-center gap-4 pt-3">
-            <Link href={SOCIAL_LINKS.instagram} aria-label="Instagram">
+            <Link href={SOCIAL_LINKS.instagram} aria-label="Instagram" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sunshine-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-sunshine-orange rounded-full transition-transform hover:scale-110">
               <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-sunshine-yellow text-sunshine-brown font-semibold">
                 IG
               </span>
             </Link>
-            <Link href={SOCIAL_LINKS.linkedin} aria-label="LinkedIn">
+            <Link href={SOCIAL_LINKS.linkedin} aria-label="LinkedIn" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sunshine-blue focus-visible:ring-offset-2 focus-visible:ring-offset-sunshine-orange rounded-full transition-transform hover:scale-110">
               <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-sunshine-blue text-sunshine-brown font-semibold">
                 In
               </span>
@@ -42,7 +44,7 @@ export function Footer() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium hover:text-sunshine-yellow"
+                className="text-sm font-medium hover:text-sunshine-yellow transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sunshine-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-sunshine-orange rounded-sm"
               >
                 {link.label}
               </Link>
@@ -62,14 +64,27 @@ export function Footer() {
           <p className="text-sm leading-relaxed">
             Two notes per week: practices to stay resourced, aligned event invites, and community updates.
           </p>
-          <form className="flex flex-col sm:flex-row gap-3">
+          <form
+            className="flex flex-col sm:flex-row gap-3"
+            onSubmit={async (e) => {
+              e.preventDefault();
+              const formData = new FormData(e.currentTarget);
+              const email = formData.get('email');
+              await fetch('/api/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ type: 'newsletter', email }),
+              });
+            }}
+          >
             <Input
               type="email"
               placeholder="you@example.com"
+              name="email"
               className="bg-sunshine-white text-sunshine-brown placeholder:text-sunshine-brown/60 border-2 border-sunshine-purple"
               aria-label="Email address"
             />
-            <Button type="button" className="bg-sunshine-purple text-sunshine-white hover:bg-sunshine-yellow hover:text-sunshine-brown">
+            <Button type="submit" className="bg-sunshine-purple text-sunshine-white hover:bg-sunshine-yellow hover:text-sunshine-brown">
               Join
             </Button>
           </form>
@@ -82,8 +97,8 @@ export function Footer() {
         <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
           <p className="font-medium">© {year} The Sunshine Effect</p>
           <div className="flex gap-4">
-            <Link href="/contact" className="hover:text-sunshine-yellow">Work With Sunshine</Link>
-            <Link href="/events" className="hover:text-sunshine-yellow">Explore Events</Link>
+            <Link href="/contact" className="hover:text-sunshine-yellow transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sunshine-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-sunshine-orange rounded-sm">Work With Sunshine</Link>
+            <Link href="/events" className="hover:text-sunshine-yellow transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sunshine-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-sunshine-orange rounded-sm">Explore Events</Link>
           </div>
         </div>
       </div>

@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -68,7 +70,7 @@ export default function ContactPage() {
     return (
       <main className="min-h-screen flex items-center justify-center px-6 py-20 bg-sunshine-white">
         <BrandCard className="max-w-2xl mx-auto p-12 text-center" variant="white">
-          <div className="w-16 h-16 rounded-full bg-sunshine-yellow flex items-center justify-center mx-auto mb-6 text-sunshine-brown">
+          <div className="w-16 h-16 rounded-full bg-sunshine-yellow flex items-center justify-center mx-auto mb-6 text-sunshine-brown animate-bounce">
             <CheckCircle2 className="h-8 w-8" />
           </div>
           <h1 className="font-headline text-4xl uppercase mb-4 text-sunshine-purple">
@@ -195,18 +197,25 @@ export default function ContactPage() {
                 <Button
                   type="submit"
                   size="lg"
-                  className="bg-sunshine-purple text-sunshine-white hover:bg-sunshine-orange px-12"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? 'Sending...' : 'Send message'}
-                </Button>
+              className="bg-sunshine-purple text-sunshine-white hover:bg-sunshine-orange px-12"
+              disabled={isSubmitting}
+            >
+                  {isSubmitting ? (
+                    <span className="inline-flex items-center gap-2">
+                      <span className="h-4 w-4 border-2 border-sunshine-white border-t-transparent rounded-full animate-spin" aria-hidden />
+                      Sending...
+                    </span>
+                  ) : (
+                    'Send message'
+                  )}
+              </Button>
                 <p className="text-sm text-sunshine-brown max-w-md">
                   Expect a reply in 24 hours. Your words stay confidential and are read by Sunshine only.
                 </p>
               </div>
             </form>
           </Form>
-        </Card>
+        </BrandCard>
 
         <div className="grid md:grid-cols-3 gap-6">
           <BrandCard className="p-6" variant="yellow">
@@ -235,7 +244,7 @@ export default function ContactPage() {
                 <label className="text-sm font-semibold">Phone</label>
                 <input
                   placeholder="(555) 123-4567"
-                  className="w-full rounded-full px-4 py-3 bg-sunshine-yellow text-sunshine-brown border-0"
+                  className="w-full rounded-full px-4 py-3 bg-sunshine-white text-sunshine-brown border-2 border-sunshine-purple placeholder:text-sunshine-brown/60"
                 />
               </div>
               <Button className="bg-sunshine-purple text-sunshine-white hover:bg-sunshine-orange w-full sm:w-auto">
@@ -255,7 +264,7 @@ export default function ContactPage() {
                 <label className="text-sm font-semibold">Email</label>
                 <input
                   placeholder="you@example.com"
-                  className="w-full rounded-full px-4 py-3 bg-sunshine-yellow text-sunshine-brown border-0"
+                  className="w-full rounded-full px-4 py-3 bg-sunshine-white text-sunshine-brown border-2 border-sunshine-purple placeholder:text-sunshine-brown/60"
                 />
               </div>
               <Button className="bg-sunshine-yellow text-sunshine-brown hover:bg-sunshine-blue w-full sm:w-auto">

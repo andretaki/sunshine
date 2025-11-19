@@ -66,6 +66,7 @@ export default function OfferingsPage() {
             <p className="font-body text-lg text-sunshine-brown leading-relaxed max-w-3xl">
               Single session or 3-month journey. Together we clear the fog, rebuild confidence, and practice rituals that keep you resourced.
             </p>
+            <p className="font-body text-sm text-sunshine-brown">Starts at $450 per session or $1,200 for 3 months. Payment plans available.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             <BrandCard className="p-7" variant="purple">
@@ -94,7 +95,7 @@ export default function OfferingsPage() {
           </div>
           <Link href="/contact">
             <Button className="bg-sunshine-yellow text-sunshine-brown hover:bg-sunshine-blue">
-              Apply for coaching
+              Book a free 20-min discovery call
             </Button>
           </Link>
         </div>
@@ -108,6 +109,7 @@ export default function OfferingsPage() {
             <p className="font-body text-lg leading-relaxed max-w-3xl">
               Weekend and longer immersive experiences to shed old identities, remember who you are, and gather tools with women who want the same.
             </p>
+            <p className="font-body text-sm text-sunshine-brown">From $650. Payment plans and limited scholarships available.</p>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
             <BrandCard className="p-7" variant="orange">

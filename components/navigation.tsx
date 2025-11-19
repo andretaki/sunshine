@@ -16,26 +16,52 @@ import { useActiveSection } from '@/lib/hooks/use-active-section';
 export function Navigation() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
   const activeSection = useActiveSection(HOME_SECTIONS);
   const isHomePage = pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+
+      // Update scrolled state for border
+      setScrolled(currentScrollY > 20);
+
+      // Show nav when at top or scrolling up, hide when scrolling down
+      if (currentScrollY < 20) {
+        setVisible(true);
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up
+        setVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down (only hide after 100px)
+        setVisible(false);
+      }
+
+      setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full bg-sunshine-white ${
-        scrolled ? 'border-b-2 border-sunshine-purple' : ''
+      className={`sticky z-50 transition-all duration-500 ${
+        visible ? 'translate-y-0' : '-translate-y-full'
+      } ${
+        scrolled
+          ? 'top-4 left-0 right-0 mx-auto max-w-6xl'
+          : 'top-0 w-full'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-3">
+      <div className={`transition-all duration-500 ${
+        scrolled
+          ? 'bg-sunshine-white rounded-full shadow-xl shadow-sunshine-purple/20 border-2 border-sunshine-purple mx-4'
+          : 'bg-sunshine-white'
+      } ${scrolled ? 'px-6 py-2' : 'max-w-7xl mx-auto px-6 py-3'}`}>
         <div className="flex items-center justify-between gap-6">
           {/* Logo + Wordmark */}
           <Link
@@ -62,12 +88,12 @@ export function Navigation() {
                   key={link.href}
                   href={link.href}
                   aria-current={active ? 'page' : undefined}
-                  className={`text-sm font-medium transition-colors relative group tracking-wide ${
+                  className={`text-sm font-medium transition-colors relative group tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sunshine-purple focus-visible:ring-offset-2 rounded-sm ${
                     active ? 'text-sunshine-purple' : 'text-sunshine-brown hover:text-sunshine-purple'
                   }`}
                 >
                   {link.label}
-                  <span className={`absolute -bottom-1 left-1/2 h-0.5 bg-sunshine-yellow transition-all duration-300 ${
+                  <span className={`absolute -bottom-1 left-1/2 h-0.5 bg-sunshine-yellow transition-all duration-300 ease-out ${
                     active ? 'w-full left-0' : 'w-0 group-hover:w-full group-hover:left-0'
                   }`} />
                 </Link>
@@ -100,6 +126,14 @@ export function Navigation() {
                     The Sunshine Effect
                   </span>
                 </div>
+                <Link
+                  href="tel:+1234567890"
+                  className="mb-4 block"
+                >
+                  <Button className="w-full bg-sunshine-blue text-sunshine-brown hover:bg-sunshine-yellow">
+                    Call Sunshine
+                  </Button>
+                </Link>
                 <Link
                   href="/contact"
                   onClick={() => setMobileOpen(false)}
