@@ -62,6 +62,7 @@ export default {
         headline: ["var(--font-headline)", "Belvare", "serif"],
         subhead: ["var(--font-subhead)", "Laro Soft Bold", "sans-serif"],
         body: ["var(--font-body)", "Poppins", "sans-serif"],
+        bebas: ["var(--font-bebas)", "Bebas Neue", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {
