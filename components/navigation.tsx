@@ -2,31 +2,19 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
-import { Menu, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from '@/components/ui/sheet';
-import { NAV_LINKS, HOME_SECTIONS } from '@/lib/constants';
-import { useActiveSection } from '@/lib/hooks/use-active-section';
 
 export function Navigation() {
-  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [visible, setVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const activeSection = useActiveSection(HOME_SECTIONS);
-  const isHomePage = pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Update scrolled state for border
+      // Update scrolled state for styling
       setScrolled(currentScrollY > 20);
 
       // Show nav when at top or scrolling up, hide when scrolling down
@@ -47,117 +35,50 @@ export function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
+  // Scroll to email signup section
+  const scrollToSignup = () => {
+    const signupSection = document.getElementById('email-signup');
+    signupSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   return (
     <header
-      className={`sticky z-50 transition-all duration-500 ${
+      className={`sticky top-0 z-50 transition-all duration-500 ${
         visible ? 'translate-y-0' : '-translate-y-full'
-      } ${
-        scrolled
-          ? 'top-4 left-0 right-0 mx-auto max-w-6xl'
-          : 'top-0 w-full'
       }`}
     >
       <div className={`transition-all duration-500 ${
         scrolled
-          ? 'bg-sunshine-white rounded-full shadow-xl shadow-sunshine-purple/20 border-2 border-sunshine-purple mx-4'
-          : 'bg-sunshine-white'
-      } ${scrolled ? 'px-6 py-2' : 'max-w-7xl mx-auto px-6 py-3'}`}>
+          ? 'bg-sunshine-white rounded-full shadow-xl shadow-sunshine-purple/20 border-2 border-sunshine-purple mx-4 px-6 py-2 max-w-4xl mx-auto mt-4'
+          : 'bg-sunshine-white max-w-7xl mx-auto px-6 py-3'
+      }`}>
         <div className="flex items-center justify-between gap-6">
           {/* Logo + Wordmark */}
           <Link
             href="/"
             className="flex items-center gap-3 group"
           >
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-sunshine-purple text-sunshine-white">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-sunshine-purple text-sunshine-white transition-all">
               <Sparkles className="h-5 w-5" />
             </span>
-            <span className="font-subhead text-xl font-bold uppercase tracking-wide text-sunshine-purple group-hover:text-sunshine-orange transition-colors hidden sm:inline">
-              The Sunshine Effect
+            <span className="font-subhead text-xl font-bold uppercase tracking-wide text-sunshine-purple group-hover:text-sunshine-orange transition-colors">
+              {scrolled ? (
+                <span className="hidden sm:inline">Sunshine</span>
+              ) : (
+                <span className="hidden sm:inline">The Sunshine Effect</span>
+              )}
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-6">
-            {NAV_LINKS.map((link) => {
-              const isPageActive = pathname === link.href;
-              const isSectionActive = isHomePage && link.section && activeSection === link.section;
-              const active = isPageActive || isSectionActive;
-
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  aria-current={active ? 'page' : undefined}
-                  className={`text-sm font-medium transition-colors relative group tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sunshine-purple focus-visible:ring-offset-2 rounded-sm ${
-                    active ? 'text-sunshine-purple' : 'text-sunshine-brown hover:text-sunshine-purple'
-                  }`}
-                >
-                  {link.label}
-                  <span className={`absolute -bottom-1 left-1/2 h-0.5 bg-sunshine-yellow transition-all duration-300 ease-out ${
-                    active ? 'w-full left-0' : 'w-0 group-hover:w-full group-hover:left-0'
-                  }`} />
-                </Link>
-              );
-            })}
-          </nav>
-
-          {/* CTA + Theme Toggle + Mobile Menu */}
-          <div className="flex items-center gap-3">
-            <Link href="/contact" className="hidden sm:block">
-              <Button size="sm" className="bg-sunshine-purple text-sunshine-white hover:bg-sunshine-orange transition-colors">
-                Work With Sunshine
-              </Button>
-            </Link>
-
-            {/* Mobile Menu */}
-            <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-              <SheetTrigger asChild className="lg:hidden">
-                <Button variant="ghost" size="icon" className="text-sunshine-purple">
-                  <Menu className="h-6 w-6" />
-                  <span className="sr-only">Toggle menu</span>
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right" className="w-[320px] sm:w-[360px] p-8 bg-sunshine-purple text-sunshine-white">
-                <div className="flex items-center gap-3 mb-10 mt-2">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-sunshine-yellow text-sunshine-brown">
-                    <Sparkles className="h-5 w-5" />
-                  </span>
-                  <span className="font-subhead text-xl font-bold uppercase tracking-wide">
-                    The Sunshine Effect
-                  </span>
-                </div>
-                <Link
-                  href="tel:+1234567890"
-                  className="mb-4 block"
-                >
-                  <Button className="w-full bg-sunshine-blue text-sunshine-brown hover:bg-sunshine-yellow">
-                    Call Sunshine
-                  </Button>
-                </Link>
-                <Link
-                  href="/contact"
-                  onClick={() => setMobileOpen(false)}
-                  className="mb-8 block"
-                >
-                  <Button className="w-full bg-sunshine-yellow text-sunshine-brown hover:bg-sunshine-blue">
-                    Work With Sunshine
-                  </Button>
-                </Link>
-                <nav className="flex flex-col gap-5 pl-1">
-                  {NAV_LINKS.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      onClick={() => setMobileOpen(false)}
-                      className="text-lg font-medium text-sunshine-white hover:text-sunshine-yellow transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </nav>
-              </SheetContent>
-            </Sheet>
-          </div>
+          {/* CTA Button */}
+          <Button
+            size="sm"
+            onClick={scrollToSignup}
+            className="bg-sunshine-purple text-sunshine-white hover:bg-sunshine-orange transition-colors"
+          >
+            <span className="hidden sm:inline">{scrolled ? 'Join' : 'Join the Journey'}</span>
+            <span className="sm:hidden">Join</span>
+          </Button>
         </div>
       </div>
     </header>

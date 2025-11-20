@@ -1,16 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { SignupModal } from '@/components/signup-modal';
 
 export default function LaunchPage() {
   const [showModal, setShowModal] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   return (
     <>
@@ -20,7 +15,7 @@ export default function LaunchPage() {
         <div className="absolute bottom-20 right-10 w-40 h-40 bg-sunshine-purple/20 rounded-full blur-3xl animate-pulse delay-1000" />
         <div className="absolute top-1/2 right-1/4 w-24 h-24 bg-sunshine-blue/20 rounded-full blur-2xl animate-pulse delay-500" />
 
-        <div className={`max-w-2xl w-full text-center space-y-8 transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div className="max-w-2xl w-full text-center space-y-8 animate-fade-in">
           {/* Headline */}
           <h1 className="font-bebas text-[clamp(3.5rem,12vw,7rem)] leading-none tracking-tight text-sunshine-brown">
             RADIANCE IS YOURS
