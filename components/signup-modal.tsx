@@ -96,14 +96,14 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
                   value={formData.firstName}
                   onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                   required
-                  className="w-full px-5 py-3 rounded-lg bg-sunshine-white border border-sunshine-brown/20 focus:border-sunshine-purple focus:ring-2 focus:ring-sunshine-purple/20 focus:outline-none transition-all placeholder:text-sunshine-brown/40 font-body text-sunshine-brown"
+                  className="w-full px-5 py-3 rounded-lg bg-white border-2 border-sunshine-brown/30 focus:border-sunshine-purple focus:ring-2 focus:ring-sunshine-purple/20 focus:outline-none transition-all placeholder:text-sunshine-brown/50 font-body text-sunshine-brown shadow-sm"
                 />
                 <input
                   type="text"
                   placeholder="Last name"
                   value={formData.lastName}
                   onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                  className="w-full px-5 py-3 rounded-lg bg-sunshine-white border border-sunshine-brown/20 focus:border-sunshine-purple focus:ring-2 focus:ring-sunshine-purple/20 focus:outline-none transition-all placeholder:text-sunshine-brown/40 font-body text-sunshine-brown"
+                  className="w-full px-5 py-3 rounded-lg bg-white border-2 border-sunshine-brown/30 focus:border-sunshine-purple focus:ring-2 focus:ring-sunshine-purple/20 focus:outline-none transition-all placeholder:text-sunshine-brown/50 font-body text-sunshine-brown shadow-sm"
                 />
                 <input
                   type="email"
@@ -111,14 +111,14 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
-                  className="w-full px-5 py-3 rounded-lg bg-sunshine-white border border-sunshine-brown/20 focus:border-sunshine-purple focus:ring-2 focus:ring-sunshine-purple/20 focus:outline-none transition-all placeholder:text-sunshine-brown/40 font-body text-sunshine-brown"
+                  className="w-full px-5 py-3 rounded-lg bg-white border-2 border-sunshine-brown/30 focus:border-sunshine-purple focus:ring-2 focus:ring-sunshine-purple/20 focus:outline-none transition-all placeholder:text-sunshine-brown/50 font-body text-sunshine-brown shadow-sm"
                 />
                 <input
                   type="tel"
                   placeholder="Phone number"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-5 py-3 rounded-lg bg-sunshine-white border border-sunshine-brown/20 focus:border-sunshine-purple focus:ring-2 focus:ring-sunshine-purple/20 focus:outline-none transition-all placeholder:text-sunshine-brown/40 font-body text-sunshine-brown"
+                  className="w-full px-5 py-3 rounded-lg bg-white border-2 border-sunshine-brown/30 focus:border-sunshine-purple focus:ring-2 focus:ring-sunshine-purple/20 focus:outline-none transition-all placeholder:text-sunshine-brown/50 font-body text-sunshine-brown shadow-sm"
                 />
 
                 {/* Submit button - per brandSpec.layout.signupPage.form.submitButton */}
