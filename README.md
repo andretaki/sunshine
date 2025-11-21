@@ -614,3 +614,62 @@ Always align code decisions with the brand feeling of warmth, safety, and confid
 When in doubt, prioritize simplicity, clarity, and emotional resonance over flashy effects
 
 Any placeholder copy you provide must feel on brand and could realistically go live with minimal editing
+
+---
+
+## PHASED LAUNCH SYSTEM (Feature Flags)
+
+**IMPORTANT:** This site uses a feature flag system to support phased rollout.
+
+### Current Launch State
+The site is currently in **Phase 1** with only these features enabled:
+- ✅ Homepage with Sunshine's bio
+- ✅ Email signup functionality
+
+All other features (Offerings, Events, Community, Contact) are **built and ready** but hidden until you enable them.
+
+### How to Enable Features
+1. Open `lib/features.ts`
+2. Change the feature flag from `false` to `true`
+3. Deploy (or save in development)
+
+Example:
+```typescript
+// Enable offerings page
+offerings: true,  // Changed from false
+```
+
+The feature will automatically appear in navigation, become accessible, and show in footer.
+
+### Available Features to Enable
+- `offerings` - Coaching packages and services page
+- `events` - Golden Hour & Lunar Room events page
+- `community` - Community and testimonials page
+- `fullContact` - Full contact form with topic selection
+- `testimonials` - Show testimonials on homepage
+- `coaching` - Individual coaching sections
+- `retreats` - Retreat information
+- `eventBooking` - Direct event booking
+- `smsSignup` - SMS phone number collection
+
+### Documentation
+See **PHASED-LAUNCH.md** for complete documentation including:
+- Detailed feature descriptions
+- Suggested rollout timeline
+- Testing checklist
+- Rollback instructions
+- Pro tips for growing your platform
+
+### Code Architecture
+- Feature configuration: `lib/features.ts`
+- Navigation filtering: `components/navigation.tsx`
+- Page guards: Each page checks `isFeatureEnabled()` and returns 404 if disabled
+- Conditional rendering: Components use `FEATURES.*` for showing/hiding sections
+- Backup: Original full homepage preserved in `app/page.FULL.tsx.backup`
+
+---
+
+Technical Notes
+- Contact form sends via Resend when env vars are set: `RESEND_API_KEY`, `CONTACT_INBOX` (or `RESEND_TO`), optional `RESEND_FROM`.
+- Subscribe API (`/api/subscribe`) accepts `type` of `newsletter | sms | glow-notes | guide | waitlist` plus `email`/`phone`.
+- Database schema managed via Drizzle ORM - run `npm run db:push` to sync schema changes.

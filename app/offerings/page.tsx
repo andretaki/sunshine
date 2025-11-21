@@ -1,10 +1,33 @@
+import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { BrandCard } from '@/components/brand-card';
+import { isFeatureEnabled } from '@/lib/features';
 
 export const metadata = {
-  title: 'Offerings | The Sunshine Effect',
+  title: 'Offerings',
   description: 'Coaching, retreats, and events that guide women from burnout to alignment with clarity, devotion, and community.',
+  keywords: ['life coaching', 'women retreats', 'burnout coaching', 'wellness retreats', 'coaching sessions'],
+  openGraph: {
+    title: 'Offerings | The Sunshine Effect',
+    description: 'Coaching, retreats, and events that guide women from burnout to alignment with clarity, devotion, and community.',
+    url: '/offerings',
+    type: 'website',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'The Sunshine Effect Offerings',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Offerings | The Sunshine Effect',
+    description: 'Coaching, retreats, and events that guide women from burnout to alignment with clarity, devotion, and community.',
+    images: ['/og-image.png'],
+  },
   alternates: { canonical: '/offerings' },
 };
 
@@ -32,6 +55,10 @@ const future = [
 ];
 
 export default function OfferingsPage() {
+  if (!isFeatureEnabled('offerings')) {
+    notFound();
+  }
+
   return (
     <div className="bg-sunshine-white">
       <section className="bg-sunshine-purple text-sunshine-white px-6 py-16 md:py-20">
@@ -58,7 +85,7 @@ export default function OfferingsPage() {
         </div>
       </section>
 
-      <section className="px-6 py-16">
+      <section className="px-4 sm:px-6 py-12 md:py-16 overflow-hidden">
         <div className="max-w-6xl mx-auto space-y-8">
           <div className="space-y-2">
             <p className="font-subhead uppercase tracking-[0.14em] text-sm text-sunshine-orange">1:1 Coaching</p>
@@ -69,19 +96,24 @@ export default function OfferingsPage() {
             <p className="font-body text-sm text-sunshine-brown">Starts at $450 per session or $1,200 for 3 months. Payment plans available.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
-            <BrandCard className="p-7" variant="purple">
-              <h3 className="font-headline text-2xl uppercase mb-3">Single clarity session</h3>
-              <p className="font-body leading-relaxed text-sm">
-                A focused 75 minutes to name what is draining you, choose a next step, and leave with a simple ritual you can start today.
-              </p>
-            </BrandCard>
-            <BrandCard className="p-7" variant="orange">
-              <h3 className="font-headline text-2xl uppercase mb-3">3-month journey</h3>
-              <p className="font-body leading-relaxed text-sm">
-                Bi-weekly calls, voice note check-ins, and co-created rituals. We track progress, celebrate momentum, and recalibrate together.
-              </p>
-            </BrandCard>
-            <BrandCard className="p-7" variant="white">
+            <div>
+              <BrandCard className="p-7" variant="purple">
+                <h3 className="font-headline text-2xl uppercase mb-3">Single clarity session</h3>
+                <p className="font-body leading-relaxed text-sm">
+                  A focused 75 minutes to name what is draining you, choose a next step, and leave with a simple ritual you can start today.
+                </p>
+              </BrandCard>
+            </div>
+            <div className="md:mt-12">
+              <BrandCard className="p-7" variant="orange">
+                <h3 className="font-headline text-2xl uppercase mb-3">3-month journey</h3>
+                <p className="font-body leading-relaxed text-sm">
+                  Bi-weekly calls, voice note check-ins, and co-created rituals. We track progress, celebrate momentum, and recalibrate together.
+                </p>
+              </BrandCard>
+            </div>
+            <div>
+              <BrandCard className="p-7" variant="white">
               <h3 className="font-headline text-2xl uppercase text-sunshine-purple mb-3">What it helps with</h3>
               <ul className="space-y-2 text-sm leading-relaxed font-body">
                 {focusAreas.map((item) => (
@@ -92,19 +124,20 @@ export default function OfferingsPage() {
                 ))}
               </ul>
             </BrandCard>
+            </div>
           </div>
-          <Link href="/contact">
-            <Button className="bg-sunshine-yellow text-sunshine-brown hover:bg-sunshine-blue">
-              Book a free 20-min discovery call
-            </Button>
-          </Link>
+            <Link href="/contact">
+              <Button variant="glow-yellow">
+                Book a free 20-min discovery call
+              </Button>
+            </Link>
         </div>
       </section>
 
-      <section className="px-6 py-16 bg-sunshine-yellow text-sunshine-brown">
+      <section className="px-4 sm:px-6 py-12 md:py-16 overflow-hidden bg-sunshine-yellow text-sunshine-brown">
         <div className="max-w-6xl mx-auto space-y-8">
           <div className="space-y-2">
-            <p className="font-subhead uppercase tracking-[0.14em] text-sm text-sunshine-purple">Retreats</p>
+            <p className="font-subhead uppercase tracking-[0.15em] font-bold text-xs text-sunshine-purple">Retreats</p>
             <h2 className="font-headline text-4xl uppercase text-sunshine-purple">Release, remember, reconnect.</h2>
             <p className="font-body text-lg leading-relaxed max-w-3xl">
               Weekend and longer immersive experiences to shed old identities, remember who you are, and gather tools with women who want the same.
@@ -132,18 +165,20 @@ export default function OfferingsPage() {
             </BrandCard>
           </div>
           <Link href="/events">
+          <Link href="/events">
             <Button className="bg-sunshine-purple text-sunshine-white hover:bg-sunshine-yellow hover:text-sunshine-brown">
               Join the retreat waitlist
             </Button>
           </Link>
+          </Link>
         </div>
       </section>
 
-      <section className="px-6 py-16 bg-sunshine-white">
+      <section className="px-4 sm:px-6 py-12 md:py-16 overflow-hidden bg-sunshine-white">
         <div className="max-w-6xl mx-auto space-y-8">
           <div className="space-y-2">
-            <p className="font-subhead uppercase tracking-[0.14em] text-sm text-sunshine-orange">Events hub</p>
-            <h2 className="font-headline text-4xl uppercase text-sunshine-purple">Community in motion</h2>
+            <p className="font-subhead uppercase tracking-[0.15em] font-bold text-xs text-sunshine-orange">Events hub</p>
+            <h2 className="font-headline text-4xl uppercase text-sunshine-purple leading-[0.9] tracking-tight">Community in motion</h2>
             <p className="font-body text-lg leading-relaxed max-w-3xl text-sunshine-brown">
               Golden Hour (high-energy, heart-led networking) and Lunar Room (slow, introspective sound + stillness). Two energies, one community.
             </p>
@@ -151,14 +186,14 @@ export default function OfferingsPage() {
           <div className="grid md:grid-cols-2 gap-6">
             <BrandCard className="p-7" variant="orange">
               <h3 className="font-headline text-2xl uppercase mb-2">Golden Hour</h3>
-              <p className="text-sm leading-relaxed">Electric, connective, and playful. Storytelling, mindset coaching, and a clear next step to keep moving.</p>
+              <p className="font-body text-sm leading-relaxed">Electric, connective, and playful. Storytelling, mindset coaching, and a clear next step to keep moving.</p>
               <Button className="mt-5 bg-sunshine-blue text-sunshine-brown hover:bg-sunshine-yellow">
                 See upcoming dates
               </Button>
             </BrandCard>
             <BrandCard className="p-7" variant="purple">
               <h3 className="font-headline text-2xl uppercase mb-2">Lunar Room</h3>
-              <p className="text-sm leading-relaxed">Slow, grounded, candle-lit. Yoga, sound, meditation, and gentle community processing.</p>
+              <p className="font-body text-sm leading-relaxed">Slow, grounded, candle-lit. Yoga, sound, meditation, and gentle community processing.</p>
               <Button className="mt-5 bg-sunshine-yellow text-sunshine-brown hover:bg-sunshine-blue">
                 Join the waitlist
               </Button>
@@ -172,7 +207,7 @@ export default function OfferingsPage() {
         </div>
       </section>
 
-      <section className="px-6 py-16 bg-sunshine-yellow text-sunshine-brown">
+      <section className="px-4 sm:px-6 py-12 md:py-16 overflow-hidden bg-sunshine-yellow text-sunshine-brown">
         <div className="max-w-6xl mx-auto space-y-8">
           <div className="space-y-2">
             <p className="font-subhead uppercase tracking-[0.14em] text-sm text-sunshine-purple">Future offerings</p>

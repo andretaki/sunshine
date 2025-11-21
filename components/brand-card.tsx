@@ -5,10 +5,10 @@ type Variant = 'purple' | 'orange' | 'yellow' | 'white';
 type Decoration = 'none' | 'tape' | 'sticker';
 
 const variants: Record<Variant, string> = {
-  purple: 'bg-sunshine-purple text-sunshine-white border-2 border-sunshine-yellow shadow-lg shadow-sunshine-purple/20',
-  orange: 'bg-sunshine-orange text-sunshine-white border-2 border-sunshine-blue shadow-lg shadow-sunshine-orange/20',
-  yellow: 'bg-sunshine-yellow text-sunshine-brown border-2 border-sunshine-purple shadow-lg shadow-sunshine-yellow/20',
-  white: 'bg-sunshine-white text-sunshine-brown border-2 border-sunshine-purple shadow-lg shadow-sunshine-purple/10',
+  purple: 'bg-sunshine-purple text-sunshine-white border-2 border-sunshine-yellow',
+  orange: 'bg-sunshine-orange text-sunshine-white border-2 border-sunshine-blue',
+  yellow: 'bg-sunshine-yellow text-sunshine-brown border-2 border-sunshine-purple',
+  white: 'bg-sunshine-white text-sunshine-brown border-2 border-sunshine-purple',
 };
 
 interface BrandCardProps {
@@ -26,7 +26,7 @@ export function BrandCard({
 }: BrandCardProps) {
   return (
     <div className={cn(
-      'rounded-[2rem] p-10 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl relative overflow-hidden',
+      'rounded-[2rem] p-10 transition-all duration-300 hover:-translate-y-1 active:scale-[0.99] relative overflow-hidden',
       variants[variant],
       className
     )}>

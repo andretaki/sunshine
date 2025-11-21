@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { X } from 'lucide-react';
-import Image from 'next/image';
 
 interface SignupModalProps {
   isOpen: boolean;
@@ -53,47 +52,38 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+      {/* Modal card - per brandSpec.layout.signupPage.hero */}
       <div
-        className="relative w-full max-w-lg rounded-3xl p-0 overflow-hidden shadow-2xl"
+        className="relative w-full max-w-[420px] rounded-3xl overflow-hidden shadow-2xl"
         style={{
-          background: 'linear-gradient(135deg, #FCF6F2 0%, #95D7E6 50%, #FFC619 100%)',
-          padding: '3px',
+          backgroundColor: 'rgba(252, 246, 242, 0.96)', // whiteCloud with 96% opacity
         }}
       >
-        <div className="bg-gradient-to-br from-green-800 via-green-700 to-green-900 rounded-3xl overflow-hidden">
+        {/* Background image overlay - will add signupHeroFlame image later */}
+        <div className="absolute inset-0 z-0 bg-gradient-to-br from-sunshine-orange/20 via-sunshine-purple/10 to-sunshine-yellow/20" />
+
+        {/* Content container with relative positioning */}
+        <div className="relative z-10">
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/20 transition-colors z-10"
+            className="absolute top-4 right-4 p-2 rounded-full hover:bg-sunshine-purple/10 transition-colors z-20"
             aria-label="Close modal"
           >
-            <X className="w-6 h-6 text-sunshine-yellow" />
+            <X className="w-6 h-6 text-sunshine-purple" />
           </button>
 
           {!submitted ? (
             <>
-              {/* Lifestyle Photo at Top */}
-              <div className="relative h-48 md:h-56 overflow-hidden">
-                <Image
-                  src="/modal-lifestyle.jpg"
-                  alt="Radiant woman"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-                {/* Floral overlay decoration */}
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-green-800/80" />
-              </div>
-
-              {/* Form Content */}
+              {/* Form Content - per brandSpec.layout.signupPage */}
               <div className="p-8">
-                {/* Heading */}
+                {/* Heading - per brandSpec.layout.signupPage.copyOptions */}
                 <div className="text-center mb-6">
-                  <h3 className="font-bebas text-5xl md:text-6xl text-sunshine-yellow mb-2 tracking-wide drop-shadow-lg">
-                    DON&apos;T MISS OUT
+                  <h3 className="font-subhead text-4xl md:text-5xl text-sunshine-purple mb-3 font-bold uppercase">
+                    STAY CONNECTED TO THE FIRE
                   </h3>
-                  <p className="font-body text-lg text-sunshine-white/90">
-                    Stay Connected To The Fire
+                  <p className="font-body text-base text-sunshine-brown/80 max-w-sm mx-auto leading-relaxed">
+                    Enter your info to receive rituals, reflections, and invitations that keep you close to your own light.
                   </p>
                 </div>
 
@@ -106,42 +96,43 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
 
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-4">
-                <input
-                  type="text"
-                  placeholder="First Name"
-                  value={formData.firstName}
-                  onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                  required
-                  className="w-full px-6 py-4 rounded-full bg-white text-gray-800 border-2 border-transparent focus:border-sunshine-yellow focus:outline-none transition-colors placeholder:text-gray-400 text-lg"
-                />
-                <input
-                  type="text"
-                  placeholder="Last Name"
-                  value={formData.lastName}
-                  onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                  required
-                  className="w-full px-6 py-4 rounded-full bg-white text-gray-800 border-2 border-transparent focus:border-sunshine-yellow focus:outline-none transition-colors placeholder:text-gray-400 text-lg"
-                />
-                <input
-                  type="email"
-                  placeholder="Email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  required
-                  className="w-full px-6 py-4 rounded-full bg-white text-gray-800 border-2 border-transparent focus:border-sunshine-yellow focus:outline-none transition-colors placeholder:text-gray-400 text-lg"
-                />
-                <input
-                  type="tel"
-                  placeholder="Phone (optional)"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-6 py-4 rounded-full bg-white text-gray-800 border-2 border-transparent focus:border-sunshine-yellow focus:outline-none transition-colors placeholder:text-gray-400 text-lg"
-                />
+                  {/* Form fields - per brandSpec.layout.signupPage.form.fields */}
+                  <input
+                    type="text"
+                    placeholder="First name"
+                    value={formData.firstName}
+                    onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                    required
+                    className="w-full px-6 py-3.5 rounded-full bg-white text-sunshine-brown border-2 border-sunshine-brown/10 focus:border-sunshine-purple focus:outline-none transition-colors placeholder:text-sunshine-brown/40 font-body"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Last name"
+                    value={formData.lastName}
+                    onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                    className="w-full px-6 py-3.5 rounded-full bg-white text-sunshine-brown border-2 border-sunshine-brown/10 focus:border-sunshine-purple focus:outline-none transition-colors placeholder:text-sunshine-brown/40 font-body"
+                  />
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    required
+                    className="w-full px-6 py-3.5 rounded-full bg-white text-sunshine-brown border-2 border-sunshine-brown/10 focus:border-sunshine-purple focus:outline-none transition-colors placeholder:text-sunshine-brown/40 font-body"
+                  />
+                  <input
+                    type="tel"
+                    placeholder="Phone number"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className="w-full px-6 py-3.5 rounded-full bg-white text-sunshine-brown border-2 border-sunshine-brown/10 focus:border-sunshine-purple focus:outline-none transition-colors placeholder:text-sunshine-brown/40 font-body"
+                  />
 
+                  {/* Submit button - per brandSpec.layout.signupPage.form.submitButton */}
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-yellow-300 to-sunshine-yellow text-gray-900 font-bold py-4 rounded-full hover:from-sunshine-yellow hover:to-yellow-400 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed text-xl tracking-wider shadow-lg"
+                    className="w-full bg-sunshine-purple text-sunshine-white font-subhead font-bold py-4 rounded-full hover:bg-sunshine-purple/90 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed text-lg tracking-wide shadow-lg uppercase"
                   >
                     {isSubmitting ? 'SUBMITTING...' : 'I WANT IN'}
                   </button>
@@ -151,15 +142,16 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
           ) : (
             <div className="text-center py-12 px-8">
               <div className="text-7xl mb-6">✨</div>
-              <h3 className="font-bebas text-5xl text-sunshine-yellow mb-4 tracking-wide drop-shadow-lg">
-                YOU&apos;RE IN!
+              <h3 className="font-headline text-4xl text-sunshine-purple mb-4 font-bold uppercase">
+                YOU&apos;RE IN
               </h3>
-              <p className="font-body text-lg text-white mb-6 max-w-md mx-auto">
-                Welcome to The Sunshine Effect! Check your email for a warm welcome message and all the radiant details about what&apos;s coming next.
+              {/* Success message - per brandSpec.layout.signupPage.form.successMessage */}
+              <p className="font-body text-base text-sunshine-brown mb-6 max-w-md mx-auto leading-relaxed">
+                You are in. Watch your inbox for your first ritual and a little extra light.
               </p>
               <button
                 onClick={onClose}
-                className="bg-sunshine-yellow text-gray-900 px-8 py-3 rounded-full hover:bg-yellow-400 transition-colors font-bold"
+                className="bg-sunshine-purple text-sunshine-white px-8 py-3 rounded-full hover:bg-sunshine-purple/90 transition-colors font-subhead font-bold uppercase"
               >
                 Close
               </button>

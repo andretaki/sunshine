@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
+import { db } from '@/db';
+import { contacts } from '@/db/schema';
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters.'),
@@ -12,6 +14,14 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     const validatedData = contactSchema.parse(body);
+
+    // Save to database
+    await db.insert(contacts).values({
+      name: validatedData.name,
+      email: validatedData.email,
+      topic: validatedData.topic,
+      message: validatedData.message,
+    });
 
     const apiKey = process.env.RESEND_API_KEY;
     const toEmail = process.env.CONTACT_INBOX || process.env.RESEND_TO || process.env.SEND_TO_EMAIL;

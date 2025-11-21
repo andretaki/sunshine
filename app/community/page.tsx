@@ -1,10 +1,33 @@
+import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { BrandCard } from '@/components/brand-card';
+import { isFeatureEnabled } from '@/lib/features';
 
 export const metadata = {
-  title: 'Community | The Sunshine Effect',
+  title: 'Community',
   description: 'Belonging for big-hearted, creative women in transition. Accountability, courage, and aligned action together.',
+  keywords: ['women community', 'women support group', 'accountability group', 'women network'],
+  openGraph: {
+    title: 'Community | The Sunshine Effect',
+    description: 'Belonging for big-hearted, creative women in transition. Accountability, courage, and aligned action together.',
+    url: '/community',
+    type: 'website',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'The Sunshine Effect Community',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Community | The Sunshine Effect',
+    description: 'Belonging for big-hearted, creative women in transition. Accountability, courage, and aligned action together.',
+    images: ['/og-image.png'],
+  },
   alternates: { canonical: '/community' },
 };
 
@@ -31,12 +54,15 @@ const connection = [
 ];
 
 export default function CommunityPage() {
+  if (!isFeatureEnabled('community')) {
+    notFound();
+  }
   return (
     <div className="bg-sunshine-white">
-      <section className="px-6 py-16 bg-sunshine-yellow text-sunshine-brown">
+      <section className="px-4 sm:px-6 py-12 md:py-16 overflow-hidden bg-sunshine-yellow text-sunshine-brown">
         <div className="max-w-5xl mx-auto space-y-4 text-center">
-          <p className="font-subhead uppercase tracking-[0.14em] text-sm text-sunshine-purple">Community</p>
-          <h1 className="font-headline text-[clamp(2.8rem,6vw,4.6rem)] uppercase leading-tight text-sunshine-purple">
+          <p className="font-subhead uppercase tracking-[0.15em] font-bold text-xs text-sunshine-purple">Community</p>
+          <h1 className="font-headline text-[clamp(2.8rem,6vw,4.6rem)] uppercase leading-[0.9] tracking-tight text-sunshine-purple">
             You do not have to do this alone.
           </h1>
           <p className="font-body text-lg leading-relaxed max-w-3xl mx-auto">
@@ -57,11 +83,11 @@ export default function CommunityPage() {
         </div>
       </section>
 
-      <section className="px-6 py-16">
+      <section className="px-4 sm:px-6 py-12 md:py-16 overflow-hidden">
         <div className="max-w-6xl mx-auto grid md:grid-cols-[1.1fr_0.9fr] gap-10 items-start">
           <div className="space-y-4">
-            <p className="font-subhead uppercase tracking-[0.14em] text-sm text-sunshine-orange">The gap</p>
-            <h2 className="font-headline text-4xl uppercase text-sunshine-purple">From busy & dull to aligned & radiant.</h2>
+            <p className="font-subhead uppercase tracking-[0.15em] font-bold text-xs text-sunshine-orange">The gap</p>
+            <h2 className="font-headline text-4xl uppercase text-sunshine-purple leading-[0.9] tracking-tight">From busy & dull to aligned & radiant.</h2>
             <p className="font-body text-lg leading-relaxed text-sunshine-brown">
               Maybe there is another way. You want clarity, confidence, stability, and a circle that will not let you shrink. Community is how we move from awareness to action.
             </p>
@@ -80,11 +106,11 @@ export default function CommunityPage() {
         </div>
       </section>
 
-      <section className="px-6 py-16 bg-sunshine-purple text-sunshine-white">
+      <section className="px-4 sm:px-6 py-12 md:py-16 overflow-hidden bg-sunshine-purple text-sunshine-white">
         <div className="max-w-6xl mx-auto space-y-8">
           <div className="space-y-2 text-center">
-            <p className="font-subhead uppercase tracking-[0.14em] text-sm text-sunshine-blue">Content pillars</p>
-            <h3 className="font-headline text-4xl uppercase">What we practice together</h3>
+            <p className="font-subhead uppercase tracking-[0.15em] font-bold text-xs text-sunshine-blue">Content pillars</p>
+            <h3 className="font-headline text-4xl uppercase leading-[0.9] tracking-tight">What we practice together</h3>
             <p className="font-body text-lg leading-relaxed max-w-3xl mx-auto">
               Three pillars that show up in coaching, retreats, and every community touchpoint.
             </p>
@@ -100,11 +126,11 @@ export default function CommunityPage() {
         </div>
       </section>
 
-      <section className="px-6 py-16 bg-sunshine-white">
+      <section className="px-4 sm:px-6 py-12 md:py-16 overflow-hidden bg-sunshine-white">
         <div className="max-w-6xl mx-auto space-y-8">
           <div className="space-y-2 text-center">
-            <p className="font-subhead uppercase tracking-[0.14em] text-sm text-sunshine-orange">How we stay connected</p>
-            <h3 className="font-headline text-4xl uppercase text-sunshine-purple">Choose your doorway</h3>
+            <p className="font-subhead uppercase tracking-[0.15em] font-bold text-xs text-sunshine-orange">How we stay connected</p>
+            <h3 className="font-headline text-4xl uppercase text-sunshine-purple leading-[0.9] tracking-tight">Choose your doorway</h3>
             <p className="font-body text-lg leading-relaxed max-w-3xl mx-auto text-sunshine-brown">
               Events, SMS love notes, the Consistent Bulletin, and social touches. Clear labels, big tap targets, and easy opt-outs.
             </p>

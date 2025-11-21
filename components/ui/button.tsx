@@ -15,15 +15,15 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive text-white hover:bg-sunshine-purple focus-visible:ring-destructive",
         outline:
-          "border-2 bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground",
+          "border-2 bg-transparent hover:bg-accent hover:text-accent-foreground",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-sunshine-purple",
         ghost:
           "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline rounded-none hover:scale-100 active:scale-100",
-        glow: "bg-sunshine-orange text-sunshine-white shadow-lg shadow-sunshine-orange/50 hover:shadow-xl hover:shadow-sunshine-orange/60",
-        "glow-purple": "bg-sunshine-purple text-sunshine-white shadow-lg shadow-sunshine-purple/50 hover:shadow-xl hover:shadow-sunshine-purple/60",
-        "glow-yellow": "bg-sunshine-yellow text-sunshine-brown shadow-lg shadow-sunshine-yellow/50 hover:shadow-xl hover:shadow-sunshine-yellow/60",
+        glow: "bg-sunshine-orange text-sunshine-white ring-4 ring-sunshine-yellow/40 hover:ring-sunshine-yellow/60 hover:bg-sunshine-orange",
+        "glow-purple": "bg-sunshine-purple text-sunshine-white ring-4 ring-sunshine-yellow/30 hover:ring-sunshine-yellow/50 hover:bg-sunshine-orange",
+        "glow-yellow": "bg-sunshine-yellow text-sunshine-brown ring-4 ring-sunshine-purple/30 hover:ring-sunshine-purple/50 hover:bg-sunshine-blue hover:text-sunshine-brown",
       },
       size: {
         default: "h-11 px-6 has-[>svg]:px-5",

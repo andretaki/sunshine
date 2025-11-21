@@ -86,68 +86,13 @@ Two types for creating "pockets of peace":
 
 ## 📋 Remaining Tasks to Apply Site-Wide
 
-### Typography Refinements Needed
-
-#### Headlines (H1, H2, H3) using `font-headline`:
-```tsx
-// Current
-className="font-headline text-4xl uppercase"
-
-// Should be (for large headlines >text-4xl)
-className="font-headline text-4xl leading-[0.9] tracking-tight uppercase"
-```
-
-#### Subheads using `font-subhead` as labels:
-```tsx
-// For small uppercase labels
-className="font-subhead uppercase tracking-[0.15em] font-bold text-xs"
-```
-
-#### Body Text using `font-body`:
-```tsx
-// Add generous line-height
-className="font-body leading-relaxed" // or leading-[1.75]
-```
-
-### Image Collage Effects
-
-#### Portrait Photos (About page):
-```tsx
-<Image
-  className="rounded-t-[10rem] rounded-b-[2rem]" // Arch shape
-  {...props}
-/>
-```
-
-#### Gallery Grids:
-```tsx
-// Apply slight rotations for "tossed photos" look
-<div className="rotate-1">
-  <Image {...props} />
-</div>
-<div className="-rotate-2">
-  <Image {...props} />
-</div>
-```
-
-### Staggered Offerings Grid
-
-Update `app/page.tsx` offerings section:
-
-```tsx
-<div className="grid md:grid-cols-3 gap-8">
-  {offerings.map((offering, index) => (
-    <div
-      key={offering.title}
-      className={index % 2 === 0 ? 'translate-y-0' : 'md:translate-y-12'}
-    >
-      <BrandCard variant={offering.variant}>
-        {/* content */}
-      </BrandCard>
-    </div>
-  ))}
-</div>
-```
+### Completed This Pass
+- Tightened headline tracking/leading in `components/brand-headline.tsx`
+- Applied window arch portrait on About hero
+- Staggered offerings grid on Home for “flow”
+- Tossed “photo table” effect on Events gallery with hover straighten
+- Added SectionSeparator pockets (marquee + wavy) to homepage
+- Glow buttons applied to primary CTAs on purple/yellow surfaces
 
 ---
 
@@ -224,13 +169,11 @@ import { SectionSeparator } from '@/components/section-separator';
 
 ## 🚀 Next Steps
 
-1. **Update Typography** across all pages (Home, About, Offerings, Events, Community, Contact)
-2. **Add Section Separators** between major sections
-3. **Implement Staggered Grid** on Offerings page
-4. **Apply Image Arch Shapes** on About page portrait
-5. **Use Glow Buttons** for primary CTAs throughout
-6. **Audit Color Contrast** - ensure no white text on yellow anywhere
-7. **Add Card Decorations** strategically for visual interest
+1. Swap placeholder imagery for real Sunshine photos (WebP + blurDataURL) and apply arch/rotation rules.
+2. Use BrandSection/BrandHeadline helpers on remaining sections for uniform rhythm.
+3. Add light card decorations (tape/sticker) where appropriate.
+4. Contrast audit on yellow/white pairings and final mobile spacing pass.
+5. Consider gradients/grain selectively once real imagery is placed.
 
 ---
 

@@ -12,12 +12,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        'sunshine-purple': '#6E054D',
-        'sunshine-orange': '#D4510B',
-        'sunshine-yellow': '#FFC619',
-        'sunshine-blue': '#95D7E6',
-        'sunshine-white': '#FCF6F2',
-        'sunshine-brown': '#240D01',
+        // Brand palette from sunshineBrandSpec
+        'sunshine-purple': '#6E054D', // powerPurple - CTA buttons, important accents
+        'sunshine-orange': '#D4510B', // moltenOrange - secondary bg, badges, hover
+        'sunshine-yellow': '#FFC019', // yellowSun - primary bg, hero sections
+        'sunshine-blue': '#95D7E6', // blueSky - accent bg, pills, badges
+        'sunshine-white': '#FCF6F2', // whiteCloud - page bg, light UI surfaces
+        'sunshine-brown': '#240D01', // deepBrown - primary text on warm backgrounds
         border: "var(--color-border)",
         input: "var(--color-input)",
         ring: "var(--color-ring)",
@@ -59,10 +60,9 @@ export default {
         pill: "9999px",
       },
       fontFamily: {
-        headline: ["var(--font-headline)", "Belvare", "serif"],
-        subhead: ["var(--font-subhead)", "Laro Soft Bold", "sans-serif"],
-        body: ["var(--font-body)", "Poppins", "sans-serif"],
-        bebas: ["var(--font-bebas)", "Bebas Neue", "sans-serif"],
+        headline: ["var(--font-headline)", "Belvare", "Times New Roman", "serif"],
+        subhead: ["var(--font-subhead)", "Laro Soft", "system-ui", "sans-serif"],
+        body: ["var(--font-body)", "Poppins", "system-ui", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {

@@ -16,13 +16,13 @@ export default function LaunchPage() {
         <div className="absolute top-1/2 right-1/4 w-24 h-24 bg-sunshine-blue/20 rounded-full blur-2xl animate-pulse delay-500" />
 
         <div className="max-w-2xl w-full text-center space-y-8 animate-fade-in">
-          {/* Headline */}
-          <h1 className="font-bebas text-[clamp(3.5rem,12vw,7rem)] leading-none tracking-tight text-sunshine-brown">
+          {/* Headline - per brandSpec: H1 uses Belvare, uppercase, weight 700 */}
+          <h1 className="font-headline text-[clamp(3.5rem,12vw,7rem)] leading-none tracking-normal text-sunshine-brown uppercase font-bold">
             RADIANCE IS YOURS
           </h1>
 
-          {/* Brand name */}
-          <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl text-sunshine-purple">
+          {/* Subheadline - per brandSpec: H2 uses Laro Soft, weight 700, no transform */}
+          <h2 className="font-subhead text-4xl md:text-5xl lg:text-6xl text-sunshine-purple font-bold">
             The Sunshine Effect
           </h2>
 
@@ -50,7 +50,7 @@ export default function LaunchPage() {
             <div className="absolute top-1/4 -left-8 text-2xl animate-bounce delay-700">✨</div>
           </div>
 
-          {/* Tagline */}
+          {/* Body copy - per brandSpec.layout.landingPage.sections.hero.body */}
           <p className="text-lg md:text-xl lg:text-2xl max-w-xl mx-auto text-sunshine-brown font-body leading-relaxed">
             Move from burnout to alignment through simple rituals that build confidence, clarity, and momentum towards your most radiant life.
           </p>

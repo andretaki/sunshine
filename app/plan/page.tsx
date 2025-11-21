@@ -2,6 +2,15 @@ import fs from 'fs';
 import path from 'path';
 import Link from 'next/link';
 
+export const metadata = {
+  title: 'Plan',
+  description: 'Project implementation plan and roadmap for The Sunshine Effect website.',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
 export default function PlanPage() {
   const planPath = path.join(process.cwd(), '..', 'PLAN.md');
   const planContent = fs.existsSync(planPath)

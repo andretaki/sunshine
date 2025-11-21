@@ -1,35 +1,42 @@
 import type { Metadata } from 'next';
-import { Playfair_Display, Manrope, Poppins, Bebas_Neue } from 'next/font/google';
+import { Poppins, Playfair_Display } from 'next/font/google';
 import './globals.css';
 import { Navigation } from '@/components/navigation';
 import { SITE_CONFIG } from '@/lib/constants';
 import { Footer } from '@/components/footer';
 
+/**
+ * Brand fonts per sunshineBrandSpec.typography
+ *
+ * TODO: Purchase and install premium fonts:
+ * - Belvare (Display headings - H1, H3)
+ * - Laro Soft Bold (Subheadings - H2, H4, taglines)
+ *
+ * Current setup uses fallback fonts until premium fonts are installed.
+ * See /public/fonts/README.md for purchase links.
+ */
+
+// TEMPORARY: Using Playfair Display as fallback for Belvare
 const headline = Playfair_Display({
   variable: '--font-headline',
   subsets: ['latin'],
-  weight: ['400', '600', '700'],
+  weight: ['700'],
   display: 'swap',
 });
 
-const subhead = Manrope({
+// TEMPORARY: Using Poppins bold as fallback for Laro Soft
+const subhead = Poppins({
   variable: '--font-subhead',
   subsets: ['latin'],
-  weight: ['600', '700', '800'],
+  weight: ['700'],
   display: 'swap',
 });
 
+// Poppins - Body copy (correct per brand spec)
 const body = Poppins({
   variable: '--font-body',
   subsets: ['latin'],
   weight: ['300', '400', '500', '600'],
-  display: 'swap',
-});
-
-const bebas = Bebas_Neue({
-  variable: '--font-bebas',
-  subsets: ['latin'],
-  weight: ['400'],
   display: 'swap',
 });
 
@@ -104,7 +111,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${headline.variable} ${subhead.variable} ${body.variable} ${bebas.variable} font-body bg-background text-foreground antialiased`}
+        className={`${headline.variable} ${subhead.variable} ${body.variable} font-body bg-background text-foreground antialiased`}
       >
         <a
           href="#main-content"

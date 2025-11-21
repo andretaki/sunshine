@@ -4,55 +4,39 @@ type SeparatorType = 'marquee' | 'wavy';
 
 interface SectionSeparatorProps {
   type?: SeparatorType;
-  text?: string;
   className?: string;
 }
 
-export function SectionSeparator({
-  type = 'marquee',
-  text = 'RADIANCE IS YOURS ✦ GLOW FROM THE HEART ✦ DISCIPLINE IS SELF LOVE IN MOTION ✦ ',
-  className = ''
-}: SectionSeparatorProps) {
+export function SectionSeparator({ type = 'marquee', className }: SectionSeparatorProps) {
   if (type === 'wavy') {
     return (
-      <div className={cn('w-full py-8 overflow-hidden', className)}>
-        <svg
-          className="w-full h-8 text-sunshine-yellow"
-          viewBox="0 0 1200 60"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0,30 Q150,10 300,30 T600,30 T900,30 T1200,30"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3"
-            strokeLinecap="round"
-          />
-        </svg>
+      <div
+        className={cn(
+          'w-full h-12 flex items-center justify-center bg-sunshine-yellow text-sunshine-brown font-subhead uppercase tracking-[0.14em]',
+          className
+        )}
+        aria-hidden
+      >
+        ~ pockets of peace ~
       </div>
     );
   }
 
-  // Marquee type
   return (
-    <div className={cn('w-full py-6 overflow-hidden bg-sunshine-purple', className)}>
-      <div className="relative flex overflow-hidden">
-        <div className="flex animate-marquee whitespace-nowrap">
-          <span className="font-subhead uppercase tracking-[0.2em] text-sunshine-yellow text-sm px-4">
-            {text}
-          </span>
-          <span className="font-subhead uppercase tracking-[0.2em] text-sunshine-yellow text-sm px-4">
-            {text}
-          </span>
-        </div>
-        <div className="absolute top-0 flex animate-marquee whitespace-nowrap" aria-hidden="true">
-          <span className="font-subhead uppercase tracking-[0.2em] text-sunshine-yellow text-sm px-4">
-            {text}
-          </span>
-          <span className="font-subhead uppercase tracking-[0.2em] text-sunshine-yellow text-sm px-4">
-            {text}
-          </span>
-        </div>
+    <div
+      className={cn(
+        'w-full h-12 bg-sunshine-purple text-sunshine-yellow overflow-hidden flex items-center',
+        className
+      )}
+      aria-hidden
+    >
+      <div className="animate-marquee whitespace-nowrap font-subhead uppercase tracking-[0.14em]">
+        <span className="mx-8">
+          Radiance is yours ✦ Glow from the heart ✦ Move like it is already yours ✦
+        </span>
+        <span className="mx-8">
+          Radiance is yours ✦ Glow from the heart ✦ Move like it is already yours ✦
+        </span>
       </div>
     </div>
   );
