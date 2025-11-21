@@ -9,64 +9,53 @@ export default function LaunchPage() {
 
   return (
     <>
-      <div className="min-h-screen bg-sunshine-yellow flex items-center justify-center px-4 py-12 relative overflow-hidden">
-        {/* Decorative floating elements */}
-        <div className="absolute top-20 left-10 w-32 h-32 bg-sunshine-orange/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-sunshine-purple/20 rounded-full blur-3xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 right-1/4 w-24 h-24 bg-sunshine-blue/20 rounded-full blur-2xl animate-pulse delay-500" />
+      {/* Full-screen hero with woman-with-flame image */}
+      <div className="min-h-screen relative overflow-hidden">
+        {/* Hero Image Background */}
+        <div className="absolute inset-0">
+          <Image
+            src="/ID_LOVE_THIS_PHOTO_ON_THE_SIGN_UP_PAGE.jpg"
+            alt="Woman with flame - The Sunshine Effect"
+            fill
+            className="object-cover object-center"
+            priority
+            quality={90}
+          />
+          {/* Gradient overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-br from-sunshine-orange/60 via-sunshine-yellow/50 to-sunshine-purple/40" />
+        </div>
 
-        <div className="max-w-2xl w-full text-center space-y-8 animate-fade-in">
-          {/* Headline - per brandSpec: H1 uses Belvare, uppercase, weight 700 */}
-          <h1 className="font-headline text-[clamp(3.5rem,12vw,7rem)] leading-none tracking-normal text-sunshine-brown uppercase font-bold">
-            RADIANCE IS YOURS
-          </h1>
+        {/* Content overlay */}
+        <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-12">
+          <div className="max-w-3xl w-full text-center space-y-8">
+            {/* Headline - per brandSpec: H1 uses Belvare, uppercase, weight 700 */}
+            <h1 className="font-headline text-[clamp(3.5rem,12vw,8rem)] leading-none tracking-normal text-white uppercase font-bold drop-shadow-2xl">
+              RADIANCE IS YOURS
+            </h1>
 
-          {/* Subheadline - per brandSpec: H2 uses Laro Soft, weight 700, no transform */}
-          <h2 className="font-subhead text-4xl md:text-5xl lg:text-6xl text-sunshine-purple font-bold">
-            The Sunshine Effect
-          </h2>
+            {/* Subheadline - per brandSpec: H2 uses Laro Soft, weight 700, no transform */}
+            <h2 className="font-subhead text-4xl md:text-5xl lg:text-6xl text-white font-bold drop-shadow-lg">
+              The Sunshine Effect
+            </h2>
 
-          {/* Poppy image with decorations */}
-          <div className="max-w-sm mx-auto relative">
-            {/* Decorative glow rings */}
-            <div className="absolute inset-0 rounded-full bg-sunshine-orange/30 blur-xl scale-110 animate-pulse" />
-            <div className="absolute inset-0 rounded-full bg-sunshine-purple/20 blur-2xl scale-125 animate-pulse delay-700" />
+            {/* Body copy - per brandSpec.layout.landingPage.sections.hero.body */}
+            <p className="text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto text-white font-body leading-relaxed drop-shadow-md">
+              Move from burnout to alignment through simple rituals that build confidence, clarity, and momentum towards your most radiant life.
+            </p>
 
-            {/* Main image */}
-            <div className="relative aspect-square rounded-full overflow-hidden shadow-2xl shadow-sunshine-purple/40 border-4 border-white transform hover:scale-105 transition-transform duration-500">
-              <Image
-                src="/poppy.jpg"
-                alt="Red poppy flower"
-                width={800}
-                height={800}
-                className="w-full h-full object-cover"
-                priority
-              />
-            </div>
+            {/* CTA Button */}
+            <button
+              onClick={() => setShowModal(true)}
+              className="bg-sunshine-purple text-sunshine-white px-12 py-5 rounded-full text-xl font-subhead font-bold uppercase hover:bg-sunshine-white hover:text-sunshine-purple transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-sunshine-yellow/50"
+            >
+              I Want In
+            </button>
 
-            {/* Floating decorative petals */}
-            <div className="absolute -top-4 -right-4 text-4xl animate-bounce delay-300">🌸</div>
-            <div className="absolute -bottom-4 -left-4 text-3xl animate-bounce delay-500">🌺</div>
-            <div className="absolute top-1/4 -left-8 text-2xl animate-bounce delay-700">✨</div>
+            {/* Small tagline under button */}
+            <p className="text-base text-white/90 font-body drop-shadow-md">
+              Join the inner circle • Be the first to know
+            </p>
           </div>
-
-          {/* Body copy - per brandSpec.layout.landingPage.sections.hero.body */}
-          <p className="text-lg md:text-xl lg:text-2xl max-w-xl mx-auto text-sunshine-brown font-body leading-relaxed">
-            Move from burnout to alignment through simple rituals that build confidence, clarity, and momentum towards your most radiant life.
-          </p>
-
-          {/* CTA Button */}
-          <button
-            onClick={() => setShowModal(true)}
-            className="bg-sunshine-purple text-white px-12 py-4 rounded-full text-xl font-bold hover:bg-sunshine-orange transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-          >
-            Sign Up
-          </button>
-
-          {/* Small tagline under button */}
-          <p className="text-sm text-sunshine-brown/70 font-body">
-            Join the waitlist and be the first to know when we launch
-          </p>
         </div>
       </div>
 

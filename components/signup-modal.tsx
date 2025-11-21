@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { X } from 'lucide-react';
+import Image from 'next/image';
 
 interface SignupModalProps {
   isOpen: boolean;
@@ -51,16 +52,20 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
       {/* Modal card - per brandSpec.layout.signupPage.hero */}
-      <div
-        className="relative w-full max-w-[420px] rounded-3xl overflow-hidden shadow-2xl"
-        style={{
-          backgroundColor: 'rgba(252, 246, 242, 0.96)', // whiteCloud with 96% opacity
-        }}
-      >
-        {/* Background image overlay - will add signupHeroFlame image later */}
-        <div className="absolute inset-0 z-0 bg-gradient-to-br from-sunshine-orange/20 via-sunshine-purple/10 to-sunshine-yellow/20" />
+      <div className="relative w-full max-w-[500px] rounded-3xl overflow-hidden shadow-2xl">
+        {/* Background image - woman with flame (signupHeroFlame from brand spec) */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/ID_LOVE_THIS_PHOTO_ON_THE_SIGN_UP_PAGE.jpg"
+            alt="Stay connected to the fire"
+            fill
+            className="object-cover"
+          />
+          {/* Overlay to ensure form readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-sunshine-orange/60 to-black/70" />
+        </div>
 
         {/* Content container with relative positioning */}
         <div className="relative z-10">
