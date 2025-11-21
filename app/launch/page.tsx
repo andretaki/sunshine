@@ -9,53 +9,70 @@ export default function LaunchPage() {
 
   return (
     <>
-      {/* Full-screen hero with woman-with-flame image */}
-      <div className="min-h-screen relative overflow-hidden">
-        {/* Hero Image Background */}
-        <div className="absolute inset-0">
-          <Image
-            src="/ID_LOVE_THIS_PHOTO_ON_THE_SIGN_UP_PAGE.jpg"
-            alt="Woman with flame - The Sunshine Effect"
-            fill
-            className="object-cover object-center"
-            priority
-            quality={90}
-          />
-          {/* Gradient overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-br from-sunshine-orange/60 via-sunshine-yellow/50 to-sunshine-purple/40" />
-        </div>
+      <div className="min-h-screen bg-sunshine-white">
+        {/* Elegant header spacing */}
+        <div className="pt-12 md:pt-20"></div>
 
-        {/* Content overlay */}
-        <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-12">
-          <div className="max-w-3xl w-full text-center space-y-8">
-            {/* Headline - per brandSpec: H1 uses Belvare, uppercase, weight 700 */}
-            <h1 className="font-headline text-[clamp(3.5rem,12vw,8rem)] leading-none tracking-normal text-white uppercase font-bold drop-shadow-2xl">
-              RADIANCE IS YOURS
-            </h1>
+        {/* Main container - contained and centered */}
+        <div className="max-w-6xl mx-auto px-6 md:px-12 pb-20">
 
-            {/* Subheadline - per brandSpec: H2 uses Laro Soft, weight 700, no transform */}
-            <h2 className="font-subhead text-4xl md:text-5xl lg:text-6xl text-white font-bold drop-shadow-lg">
-              The Sunshine Effect
-            </h2>
+          {/* Hero Section - Image and Content */}
+          <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
 
-            {/* Body copy - per brandSpec.layout.landingPage.sections.hero.body */}
-            <p className="text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto text-white font-body leading-relaxed drop-shadow-md">
-              Move from burnout to alignment through simple rituals that build confidence, clarity, and momentum towards your most radiant life.
-            </p>
+            {/* Hero Image - Contained and tasteful */}
+            <div className="relative order-2 md:order-1">
+              <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/ID_LOVE_THIS_PHOTO_ON_THE_SIGN_UP_PAGE.jpg"
+                  alt="Woman with flame - The Sunshine Effect"
+                  fill
+                  className="object-cover"
+                  priority
+                  quality={90}
+                />
+                {/* Subtle warm glow overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-sunshine-orange/20 via-transparent to-transparent"></div>
+              </div>
+            </div>
 
-            {/* CTA Button */}
-            <button
-              onClick={() => setShowModal(true)}
-              className="bg-sunshine-purple text-sunshine-white px-12 py-5 rounded-full text-xl font-subhead font-bold uppercase hover:bg-sunshine-white hover:text-sunshine-purple transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-sunshine-yellow/50"
-            >
-              I Want In
-            </button>
+            {/* Content - Clean and spacious */}
+            <div className="space-y-8 order-1 md:order-2">
+              {/* Small brand tagline */}
+              <p className="font-subhead text-sm md:text-base text-sunshine-orange uppercase tracking-wider">
+                Glow from the heart
+              </p>
 
-            {/* Small tagline under button */}
-            <p className="text-base text-white/90 font-body drop-shadow-md">
-              Join the inner circle • Be the first to know
-            </p>
+              {/* Headline - per brandSpec: H1 uses Belvare, uppercase, weight 700 */}
+              <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl leading-tight text-sunshine-brown uppercase font-bold">
+                Radiance<br />is Yours
+              </h1>
+
+              {/* Subheadline - per brandSpec: H2 uses Laro Soft, weight 700 */}
+              <h2 className="font-subhead text-2xl md:text-3xl text-sunshine-purple font-bold">
+                The Sunshine Effect
+              </h2>
+
+              {/* Body copy - per brandSpec */}
+              <p className="text-base md:text-lg text-sunshine-brown/80 font-body leading-relaxed max-w-md">
+                Move from burnout to alignment through simple rituals that build confidence, clarity, and momentum towards your most radiant life.
+              </p>
+
+              {/* CTA Button */}
+              <div className="pt-4">
+                <button
+                  onClick={() => setShowModal(true)}
+                  className="bg-sunshine-purple text-sunshine-white px-10 py-4 rounded-full text-lg font-subhead font-bold uppercase hover:bg-sunshine-orange transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
+                  I Want In
+                </button>
+                <p className="text-sm text-sunshine-brown/60 font-body mt-3">
+                  Join the inner circle
+                </p>
+              </div>
+            </div>
+
           </div>
+
         </div>
       </div>
 
